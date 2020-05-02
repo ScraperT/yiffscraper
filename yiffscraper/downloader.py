@@ -67,7 +67,8 @@ class UrlItem:
                     out_file.write(chunk)
 
         url_timestamp = getTimestamp(self.lastModified)
-        os.utime(self.path, (url_timestamp, url_timestamp))
+        if url_timestamp is not None:
+            os.utime(self.path, (url_timestamp, url_timestamp))
         return (self, None)
 
     @classmethod
